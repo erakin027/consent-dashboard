@@ -1,0 +1,127 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  background-color: var(--header-bg);
+  color: var(--text-color);
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  z-index: 20;
+}
+
+.left h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.left p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.right-icons {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.icon-btn {
+  position: relative;
+  font-size: 26px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.icon-btn button {
+  font-size: 26px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  padding: 3px 6px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Sidebar Menu */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 30;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 350px;
+  height: 100%;
+  background-color: var(--card-bg);
+  border-left: 1px solid #ccc;
+  padding: 80px 30px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  z-index: 40;
+  transition: right 0.3s ease;
+}
+
+.sidebar-menu.open {
+  right: 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 18px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-menu a:hover {
+  background-color: var(--bg-color);
+}
+
+.sidebar-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-color);
+  background: none;
+  border: none;
+}
+
+.sidebar-close:hover {
+  opacity: 0.7;
+}
