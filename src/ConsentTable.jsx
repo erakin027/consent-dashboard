@@ -77,111 +77,112 @@ function ConsentTable({ consents }) {
         <h2>Consent Dashboard</h2>
         <button className="locker-btn">LOCKERS</button>
       </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>S.No</th>
-            <th>
-              Connection Type
-              <input
-                type="text"
-                placeholder="Filter"
-                onChange={(e) => handleFilterChange("connectionType", e.target.value)}
-              />
-            </th>
-            <th>
-              Host User
-              <input
-                type="text"
-                placeholder="Filter"
-                onChange={(e) => handleFilterChange("hostUser", e.target.value)}
-              />
-            </th>
-            <th>
-              Host Locker
-              <input
-                type="text"
-                placeholder="Filter"
-                onChange={(e) => handleFilterChange("hostLocker", e.target.value)}
-              />
-            </th>
-            <th>
-              Guest Locker
-              <input
-                type="text"
-                placeholder="Filter"
-                onChange={(e) => handleFilterChange("guestLocker", e.target.value)}
-              />
-            </th>
-            <th className="sortable-th">
-              Created On
-              <div className="sort-dropdown" ref={createdSortRef}>
-                <span
-                  title="Sort Created On"
-                  onClick={() => setOpenSort(openSort === 'created' ? null : 'created')}
-                >
-                  ⬍
-                </span>
-                {openSort === 'created' && (
-                  <div className="dropdown-content">
-                    <button onClick={() => handleSortChange('created-newest')}>Newest First</button>
-                    <button onClick={() => handleSortChange('created-oldest')}>Oldest First</button>
-                  </div>
-                )}
-              </div>
-            </th>
-            <th className="sortable-th">
-              Validity On
-              <div className="sort-dropdown" ref={validitySortRef}>
-                <span
-                  title="Sort Validity"
-                  onClick={() => setOpenSort(openSort === 'validity' ? null : 'validity')}
-                >
-                  ⬍
-                </span>
-                {openSort === 'validity' && (
-                  <div className="dropdown-content">
-                    <button onClick={() => handleSortChange('validity-soon')}>Soonest Expire</button>
-                    <button onClick={() => handleSortChange('validity-late')}>Latest Expire</button>
-                  </div>
-                )}
-              </div>
-            </th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {sortedConsents.length === 0 ? (
+      <div className="table-wrapper">
+        <table>
+          <thead>
             <tr>
-              <td colSpan="8" style={{ textAlign: 'center' }}>No matching consents found.</td>
+              <th>S.No</th>
+              <th>
+                Connection Type
+                <input
+                  type="text"
+                  placeholder="Filter"
+                  onChange={(e) => handleFilterChange("connectionType", e.target.value)}
+                />
+              </th>
+              <th>
+                Host User
+                <input
+                  type="text"
+                  placeholder="Filter"
+                  onChange={(e) => handleFilterChange("hostUser", e.target.value)}
+                />
+              </th>
+              <th>
+                Host Locker
+                <input
+                  type="text"
+                  placeholder="Filter"
+                  onChange={(e) => handleFilterChange("hostLocker", e.target.value)}
+                />
+              </th>
+              <th>
+                Guest Locker
+                <input
+                  type="text"
+                  placeholder="Filter"
+                  onChange={(e) => handleFilterChange("guestLocker", e.target.value)}
+                />
+              </th>
+              <th className="sortable-th">
+                Created On
+                <div className="sort-dropdown" ref={createdSortRef}>
+                  <span
+                    title="Sort Created On"
+                    onClick={() => setOpenSort(openSort === 'created' ? null : 'created')}
+                  >
+                    ⬍
+                  </span>
+                  {openSort === 'created' && (
+                    <div className="dropdown-content">
+                      <button onClick={() => handleSortChange('created-newest')}>Newest First</button>
+                      <button onClick={() => handleSortChange('created-oldest')}>Oldest First</button>
+                    </div>
+                  )}
+                </div>
+              </th>
+              <th className="sortable-th">
+                Validity On
+                <div className="sort-dropdown" ref={validitySortRef}>
+                  <span
+                    title="Sort Validity"
+                    onClick={() => setOpenSort(openSort === 'validity' ? null : 'validity')}
+                  >
+                    ⬍
+                  </span>
+                  {openSort === 'validity' && (
+                    <div className="dropdown-content">
+                      <button onClick={() => handleSortChange('validity-soon')}>Soonest Expire</button>
+                      <button onClick={() => handleSortChange('validity-late')}>Latest Expire</button>
+                    </div>
+                  )}
+                </div>
+              </th>
+              <th>Actions</th>
             </tr>
-          ) : (
-            sortedConsents.map((consent, index) => (
-              <tr key={consent.id}>
-                <td>{index + 1}</td>
-                <td>
-                  {consent.connectionType}
-                  <br />
-                  <a href="#">Read more</a>
-                </td>
-                <td>{consent.hostUser}</td>
-                <td>{consent.hostLocker}</td>
-                <td>{consent.guestLocker}</td>
-                <td>{consent.createdOn}</td>
-                <td>{consent.validityOn}</td>
-                <td>
-                  <div className="action-buttons">
-                    <button title="Info">ℹ️</button>
-                    <button title="Cancel">❌</button>
-                  </div>
-                </td>
+          </thead>
+
+          <tbody>
+            {sortedConsents.length === 0 ? (
+              <tr>
+                <td colSpan="8" style={{ textAlign: 'center' }}>No matching consents found.</td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              sortedConsents.map((consent, index) => (
+                <tr key={consent.id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    {consent.connectionType}
+                    <br />
+                    <a href="#">Read more</a>
+                  </td>
+                  <td>{consent.hostUser}</td>
+                  <td>{consent.hostLocker}</td>
+                  <td>{consent.guestLocker}</td>
+                  <td>{consent.createdOn}</td>
+                  <td>{consent.validityOn}</td>
+                  <td>
+                    <div className="action-buttons">
+                      <button title="Info">ℹ️</button>
+                      <button title="Cancel">❌</button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
